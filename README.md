@@ -58,3 +58,6 @@
 3. 规范记录缺陷
 4. 补充缺陷截图
 
+1. 创建缺陷报告模板
+- MQTT_Sensor_Bug_Report.xlsx
+- 
