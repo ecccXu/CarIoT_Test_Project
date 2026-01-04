@@ -1,4 +1,4 @@
-CarTest_MQTT_Prototype/  
+UI/  
 ├── index.html          # 主入口，集中预览所有页面  
 ├── css/  
 │   └── style.css       # 全局样式文件  
