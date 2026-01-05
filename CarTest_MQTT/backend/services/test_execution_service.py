@@ -45,7 +45,7 @@ def start_test(test_data):
     
     # 检查是否已有测试任务在执行
     if active_tests:
-        raise ValueError("当前存在正在执行的测试任务，请等待当前任务完成或终止后再启动新任务", code=603)
+        raise ValueError("当前存在正在执行的测试任务，请等待当前任务完成或终止后再启动新任务", 603)
     
     # 生成测试ID
     test_id = f"T-{datetime.utcnow().strftime('%Y%m%d-%H%M%S')}-{str(uuid.uuid4())[:8].upper()}"
@@ -143,7 +143,7 @@ def get_realtime_results(sensor_id=None):
     """
     获取实时测试结果
     """
-    query = TestResult.query.order_by(TestResult.created_at.desc())
+    query = TestResult.query.order_by(TestResult.test_time.desc())  # 按时间倒序排列
     
     if sensor_id and sensor_id != 'all':
         query = query.filter(TestResult.sensor_id == sensor_id)
@@ -161,8 +161,5 @@ def get_realtime_results(sensor_id=None):
             "result": result.result,
             "details": result.details
         })
-    
-    # 按时间倒序排列
-    result_list.sort(key=lambda x: x['timestamp'] or '', reverse=True)
     
     return result_list

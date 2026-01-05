@@ -59,6 +59,10 @@ def register_error_handlers(app):
             return error_response(message=error_msg, code=603)
         elif "MQTT连接失败" in error_msg:
             return error_response(message=error_msg, code=601)
+        elif "传感器" in error_msg and "不存在" in error_msg:
+            return error_response(message=error_msg, code=404)
+        elif "参数错误" in error_msg or "格式不正确" in error_msg:
+            return error_response(message=error_msg, code=400)
         else:
             return error_response(message=error_msg, code=400)
     
